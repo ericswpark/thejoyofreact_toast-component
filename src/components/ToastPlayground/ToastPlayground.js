@@ -23,7 +23,7 @@ function ToastPlayground() {
         <h1>Toast Playground</h1>
       </header>
 
-      {showToast && <Toast message={message} style={variant} dismissHandler={toggleToast}/>}
+      {showToast && <Toast style={variant} dismissHandler={toggleToast}>{message}</Toast>}
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
