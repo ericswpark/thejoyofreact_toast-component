@@ -42,16 +42,16 @@ function ToastPlayground() {
               setVariant(event.target.value);
             }}
           >
-            {VARIANT_OPTIONS.map((variant) => {
+            {VARIANT_OPTIONS.map((item) => {
               return (
-                <label htmlFor={`variant-${variant}`} key={variant}>
+                <label htmlFor={`variant-${item}`} key={item}>
                   <input
-                    id={`variant-${variant}`}
+                    id={`variant-${item}`}
                     type="radio"
                     name="variant"
-                    value={variant}
+                    value={item}
                   />
-                  {variant}
+                  {item}
                 </label>
               )
             })}
