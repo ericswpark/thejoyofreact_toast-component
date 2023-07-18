@@ -49,6 +49,7 @@ function ToastPlayground() {
                     id={`variant-${item}`}
                     type="radio"
                     name="variant"
+                    checked={item === variant}
                     value={item}
                   />
                   {item}
