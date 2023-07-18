@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Button from '../Button';
+import Toast from '../Toast';
 
 import styles from './ToastPlayground.module.css';
 
@@ -9,6 +10,11 @@ const VARIANT_OPTIONS = ['notice', 'warning', 'success', 'error'];
 function ToastPlayground() {
   const [message, setMessage] = React.useState("");
   const [variant, setVariant] = React.useState("notice");
+  const [showToast, setShowToast] = React.useState(false);
+
+  function toggleToast() {
+    setShowToast((value) => { return !value; });
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -16,6 +22,8 @@ function ToastPlayground() {
         <img alt="Cute toast mascot" src="/toast.png" />
         <h1>Toast Playground</h1>
       </header>
+
+      {showToast && <Toast message={message} style={variant} dismissHandler={toggleToast}/>}
 
       <div className={styles.controlsWrapper}>
         <div className={styles.row}>
@@ -37,10 +45,6 @@ function ToastPlayground() {
           <div className={styles.label}>Variant</div>
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
-            value={variant}
-            onChange={(event) => {
-              setVariant(event.target.value);
-            }}
           >
             {VARIANT_OPTIONS.map((item) => {
               return (
@@ -51,6 +55,9 @@ function ToastPlayground() {
                     name="variant"
                     checked={item === variant}
                     value={item}
+                    onChange={(event) => {
+                      setVariant(event.target.value);
+                    }}
                   />
                   {item}
                 </label>
@@ -63,7 +70,7 @@ function ToastPlayground() {
           <div className={styles.label} />
           <div
             className={`${styles.inputWrapper} ${styles.radioWrapper}`}
-            onClick={popToast}
+            onClick={toggleToast}
           >
             <Button>Pop Toast!</Button>
           </div>
@@ -71,10 +78,6 @@ function ToastPlayground() {
       </div>
     </div>
   );
-}
-
-function popToast() {
-  window.alert("TODO");
 }
 
 export default ToastPlayground;
